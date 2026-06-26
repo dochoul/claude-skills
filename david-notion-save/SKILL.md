@@ -2,13 +2,13 @@
 name: david-notion-save
 description: >
   노션(Notion)의 "나의 링크" DB에 쌓인 유튜브 링크를 읽어, 영상 자막을 기반으로
-  깊이 있게 분석한 뒤 "영상 서재" 페이지에 문서 한 편으로 정리하는 스킬.
-  사용자가 "노션 정리해줘", "영상 서재 정리해줘", "노션 유튜브 정리", "영상 분석해줘",
+  깊이 있게 분석한 뒤 "유튜브 서재" 페이지에 문서 한 편으로 정리하는 스킬.
+  사용자가 "노션 정리해줘", "유튜브 서재 정리해줘", "노션 유튜브 정리", "영상 분석해줘",
   또는 유튜브 URL을 주며 "이 영상 분석해줘"라고 하면 반드시 이 스킬을 사용할 것.
   단순 제목·링크가 아니라 영상 내용 안에 담긴 깊이 있는 내용을 정리하는 것이 목적이다.
 ---
 
-# Notion 영상 서재 스킬
+# Notion 유튜브 서재 스킬
 
 ## 목적
 
@@ -18,12 +18,12 @@ description: >
 ## 노션 구조
 
 ```
-📚 영상 서재 (페이지)   ← 분석 문서들이 모이는 곳
+📚 유튜브 서재 (페이지)   ← 분석 문서들이 모이는 곳
 📋 나의 링크 (DB)        ← 아이패드 유튜브 공유가 자동으로 쌓이는 입력함
 ```
 
 - 인증 정보는 `~/.claude/skills/david-notion-save/.env`에 있다 (gitignore 처리, GitHub 미포함).
-  - `NOTION_TOKEN`, `NOTION_MYLINKS_DB`(나의 링크), `NOTION_LIBRARY_PAGE`(영상 서재)
+  - `NOTION_TOKEN`, `NOTION_MYLINKS_DB`(나의 링크), `NOTION_LIBRARY_PAGE`(유튜브 서재)
 - API 호출 전 항상 `set -a; source ~/.claude/skills/david-notion-save/.env; set +a`로 환경변수를 로드한다.
 - Notion-Version 헤더는 `2022-06-28` 사용.
 
@@ -62,7 +62,7 @@ yt-dlp --skip-download --write-auto-subs --sub-langs "ko" --sub-format vtt --con
 - 비판적 시각 (협찬·광고성, 과장, 편향 등이 있으면 반드시 짚는다)
 - 총평
 
-### 4. 영상 서재에 문서 생성
+### 4. 유튜브 서재에 문서 생성
 
 `NOTION_LIBRARY_PAGE`를 부모로 하는 새 페이지를 만든다. 본문은 Notion 블록으로 구성:
 - 맨 위: 영상 링크(`link` 포함 paragraph), 채널·길이
