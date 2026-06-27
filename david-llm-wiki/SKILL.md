@@ -29,7 +29,7 @@ LLM은 분석·정리·연결·기록(bookkeeping)을 맡는다.
   `set -a; source ~/.claude/skills/david-llm-wiki/.env; set +a`
   - `NOTION_TOKEN`, `NOTION_MYLINKS_DB`(나의 링크), `NOTION_LIBRARY_PAGE`(노션 지식서재), `WIKI_DIR`(로컬 위키 폴더)
 - Notion-Version 헤더: `2022-06-28`
-- 로컬 위키 구조·규칙: `$WIKI_DIR/CLAUDE.md` (3계층: `raw/`=원본, `문서/`+`허브/`=가공, `CLAUDE.md`=스키마, `index.md`=색인)
+- 로컬 위키 구조·규칙: `$WIKI_DIR/CLAUDE.md` (3계층: `raw/`=원본, `문서/`+`허브/`=가공, `CLAUDE.md`=스키마, `index.md`=색인, `log.md`=수집로그)
 - 위키링크는 옵시디언 형식 `[[파일명]]` / `[[파일명|표시명]]` (확장자 .md 제외)
 - 실행 시 중간 확인 없이 끝까지 처리한다.
 
@@ -79,6 +79,10 @@ LLM은 분석·정리·연결·기록(bookkeeping)을 맡는다.
 ### 6. 노션 미러 (읽기용 사본)
 `NOTION_LIBRARY_PAGE` 자식으로 새 페이지 생성. callout(핵심 한 줄)·heading_2·bulleted_list_item·quote·divider·총평. icon은 종류 이모지. 블록 많으면 python3 urllib.
 - 생성된 page id를 로컬 문서 프론트매터 `notion_id`에 기록.
+
+### 6b. 수집 로그 기록
+`$WIKI_DIR/log.md` 표 맨 아래에 한 줄 append:
+`| <날짜> | <제목> | <종류> | <raw ✅/—> | <허브> | <출처URL> |`. (날짜는 args/환경에서 받은 실제 날짜 사용)
 
 ### 7. 원본 링크 삭제
 "나의 링크"의 처리한 행 archive.
